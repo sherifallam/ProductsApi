@@ -1,5 +1,5 @@
 const React = require('react');
-const PricePointForm = require('../PricePoints/PricePointForm');
+const PricePointForm = require('../pricePoints/PricePointForm');
 const Button = require('react-bootstrap/lib/Button');
 
 class ProductDetails extends React.Component {
