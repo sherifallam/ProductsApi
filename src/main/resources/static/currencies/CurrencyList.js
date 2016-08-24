@@ -1,8 +1,8 @@
-const React = require('react');
-const Currency = require('./Currency');
-const Table = require('react-bootstrap/lib/Table');
+import React from 'react';
+import Currency from './Currency';
+import Table from 'react-bootstrap/lib/Table';
 
-class CurrencyList extends React.Component {
+export default class CurrencyList extends React.Component {
     render() {
         var currencies = this.props.currencies.map(currency =>
             <Currency currency={currency} onDeleteCurrency={this.props.onDeleteCurrency}
@@ -28,4 +28,3 @@ class CurrencyList extends React.Component {
         )
     }
 }
-module.exports = CurrencyList;

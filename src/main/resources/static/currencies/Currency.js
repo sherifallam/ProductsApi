@@ -1,8 +1,8 @@
-const React = require('react');
-const CurrencyDetails = require('./CurrencyDetails');
-const UpdateCurrencyDialog = require('./UpdateCurrencyDialog');
+import React from 'react';
+import CurrencyDetails from './CurrencyDetails';
+import UpdateCurrencyDialog from './UpdateCurrencyDialog';
 
-class Currency extends React.Component{
+export default class Currency extends React.Component{
     constructor(props) {
         super(props);
         this.onEditCurrency = this.onEditCurrency.bind(this);
@@ -34,4 +34,3 @@ class Currency extends React.Component{
             )
     }
 }
-module.exports =Currency;

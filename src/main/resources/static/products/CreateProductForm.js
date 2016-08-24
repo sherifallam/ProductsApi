@@ -1,20 +1,21 @@
-const React = require('react');
-const ReactDom = require('react-dom');
-const Button = require('react-bootstrap/lib/Button');
-const Form = require('react-bootstrap/lib/Form');
-const FormGroup = require('react-bootstrap/lib/FormGroup');
-const Col = require('react-bootstrap/lib/Col');
-const FormControl = require('react-bootstrap/lib/FormControl');
-const ControlLabel = require('react-bootstrap/lib/ControlLabel');
-const Panel = require('react-bootstrap/lib/Panel');
-const TagsInput = require('react-tagsinput');
-class CreateProductForm extends React.Component {
+import React from  'react';
+import ReactDom from 'react-dom';
+import Button from 'react-bootstrap/lib/Button';
+import Form from 'react-bootstrap/lib/Form';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Col from 'react-bootstrap/lib/Col';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Panel from 'react-bootstrap/lib/Panel';
+import TagsInput from 'react-tagsinput';
+
+export default class CreateProductForm extends React.Component {
 
     constructor(props) {
         super(props);
         this.onCreateProduct = this.onCreateProduct.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.state = {tags: []}
+        this.state = {tags: []};
 
     }
     handleChange(tags) {
@@ -71,4 +72,3 @@ class CreateProductForm extends React.Component {
     }
 
 }
-module.exports = CreateProductForm;

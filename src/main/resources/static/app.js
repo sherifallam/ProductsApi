@@ -1,17 +1,17 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const client = require('./client');
-const CurrencyList = require('./currencies/CurrencyList');
-const CreateCurrencyForm = require('./currencies/CreateCurrencyForm');
-const ProductList = require('./products/ProductList');
-const CreateProductForm = require('./products/CreateProductForm');
-const Grid = require('react-bootstrap/lib/Grid');
-const Row = require('react-bootstrap/lib/Row');
-const Col = require('react-bootstrap/lib/Col');
-const NotificationContainer = require('react-notifications/lib/NotificationContainer');
-const NotificationManager = require('react-notifications/lib/NotificationManager');
+import React from  'react';
+import ReactDOM from  'react-dom';
+import client from  './client';
+import CurrencyList from  './currencies/CurrencyList';
+import CreateCurrencyForm from  './currencies/CreateCurrencyForm';
+import ProductList from  './products/ProductList';
+import CreateProductForm from  './products/CreateProductForm';
+import Grid from  'react-bootstrap/lib/Grid';
+import Row from  'react-bootstrap/lib/Row';
+import Col from  'react-bootstrap/lib/Col';
+import NotificationContainer from  'react-notifications/lib/NotificationContainer';
+import NotificationManager from  'react-notifications/lib/NotificationManager';
 require('react-notifications/lib/notifications.css');
 
 class App extends React.Component {

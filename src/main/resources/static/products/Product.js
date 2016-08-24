@@ -1,8 +1,8 @@
-const React = require('react');
-const ProductDetails = require('./ProductDetails');
-const UpdateProductDialog = require('./UpdateProductDialog');
+import React from  'react';
+import ProductDetails from  './ProductDetails';
+import UpdateProductDialog from  './UpdateProductDialog';
 
-class Product extends React.Component{
+export default class Product extends React.Component{
     constructor(props) {
         super(props);
         this.onEditProduct = this.onEditProduct.bind(this);
@@ -30,4 +30,3 @@ class Product extends React.Component{
         )
     }
 }
-module.exports =Product;

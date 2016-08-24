@@ -1,7 +1,7 @@
-const React = require('react');
-const Button= require('react-bootstrap/lib/Button');
+import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
 
-class CurrencyDetails extends React.Component{
+export default class CurrencyDetails extends React.Component{
     constructor(props) {
         super(props);
         this.onDeleteCurrency = this.onDeleteCurrency.bind(this);
@@ -28,4 +28,3 @@ class CurrencyDetails extends React.Component{
         )
     }
 }
-module.exports =CurrencyDetails;

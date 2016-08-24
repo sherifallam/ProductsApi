@@ -1,8 +1,8 @@
-const React = require('react');
-const Product = require('./Product');
-const Table = require('react-bootstrap/lib/Table');
+import React from  'react';
+import Product from  './Product';
+import Table from  'react-bootstrap/lib/Table';
 
-class ProductList extends React.Component {
+export default class ProductList extends React.Component {
     render() {
         var products = this.props.products.map(product =>
             <Product product={product} currencies={this.props.currencies} onDeleteProduct={this.props.onDeleteProduct}
@@ -35,4 +35,3 @@ class ProductList extends React.Component {
         )
     }
 }
-module.exports = ProductList;

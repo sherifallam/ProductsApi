@@ -1,9 +1,9 @@
-const React = require('react');
-const ReactDom = require('react-dom');
-const Button= require('react-bootstrap/lib/Button');
-const FormControl = require('react-bootstrap/lib/FormControl');
+import React from 'react';
+import ReactDom from 'react-dom';
+import Button from 'react-bootstrap/lib/Button';
+import FormControl from 'react-bootstrap/lib/FormControl';
 
-class UpdateCurrencyDialog extends React.Component {
+export default class UpdateCurrencyDialog extends React.Component {
     constructor(props) {
         super(props);
         this.onUpdateCurrency = this.onUpdateCurrency.bind(this);
@@ -41,4 +41,3 @@ class UpdateCurrencyDialog extends React.Component {
         )
     }
 }
-module.exports = UpdateCurrencyDialog;

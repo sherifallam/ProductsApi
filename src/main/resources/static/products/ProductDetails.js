@@ -1,8 +1,8 @@
-const React = require('react');
-const PricePointForm = require('../pricePoints/PricePointForm');
-const Button = require('react-bootstrap/lib/Button');
+import React from  'react';
+import PricePointForm from  '../pricePoints/PricePointForm';
+import Button from  'react-bootstrap/lib/Button';
 
-class ProductDetails extends React.Component {
+export default class ProductDetails extends React.Component {
     constructor(props) {
         super(props);
         this.onDeleteProduct = this.onDeleteProduct.bind(this);
@@ -44,4 +44,3 @@ class ProductDetails extends React.Component {
         )
     }
 }
-module.exports = ProductDetails;
