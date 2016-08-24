@@ -10,7 +10,7 @@ export default class Product extends React.Component{
         this.onCancelUpdate = this.onCancelUpdate.bind(this);
         this.state = {editMode: false};
     }
-    onEditProduct(product) {
+    onEditProduct() {
         this.setState({editMode:true});
     }
     onUpdateProduct(product) {

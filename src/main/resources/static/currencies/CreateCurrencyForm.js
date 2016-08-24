@@ -15,14 +15,14 @@ export default class CreateCurrencyForm extends React.Component {
         this.onCreateCurrency = this.onCreateCurrency.bind(this);
     }
 
-    onCreateCurrency(e) {
+    onCreateCurrency() {
         var newCurrency = {
-            "name": ReactDom.findDOMNode(this.refs["currencyName"]).value.trim(),
-            "iso3": ReactDom.findDOMNode(this.refs["currencyiso3"]).value.trim()
+            "name": ReactDom.findDOMNode(this.refs.currencyName).value.trim(),
+            "iso3": ReactDom.findDOMNode(this.refs.currencyIso3).value.trim()
         };
         this.props.onCreateCurrency(newCurrency);
-        ReactDom.findDOMNode(this.refs["currencyName"]).value = '';
-        ReactDom.findDOMNode(this.refs["currencyiso3"]).value = '';
+        ReactDom.findDOMNode(this.refs.currencyName).value = '';
+        ReactDom.findDOMNode(this.refs.currencyIso3).value = '';
     }
 
     render() {
@@ -37,12 +37,12 @@ export default class CreateCurrencyForm extends React.Component {
                             <FormControl type="text" ref="currencyName" />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="currencyiso3">
+                    <FormGroup controlId="currencyIso3">
                         <Col componentClass={ControlLabel} sm={2}>
                             Iso3
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text" ref="currencyiso3" />
+                            <FormControl type="text" ref="currencyIso3" />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="createCurrency">

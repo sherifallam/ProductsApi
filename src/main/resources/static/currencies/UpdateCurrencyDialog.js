@@ -10,16 +10,16 @@ export default class UpdateCurrencyDialog extends React.Component {
         this.onCancelUpdateCurrency = this.onCancelUpdateCurrency.bind(this);
     }
 
-    onUpdateCurrency(e) {
+    onUpdateCurrency() {
         var updatedCurrency = {
-            "href": ReactDom.findDOMNode(this.refs["currencyHref"]).value,
-            "name": ReactDom.findDOMNode(this.refs["newCurrencyName"]).value.trim(),
-            "iso3": ReactDom.findDOMNode(this.refs["newCurrencyiso3"]).value.trim()
+            "href": this.refs.currencyHref.value,
+            "name": ReactDom.findDOMNode(this.refs.newCurrencyName).value.trim(),
+            "iso3": ReactDom.findDOMNode(this.refs.newCurrencyiso3).value.trim()
         };
         this.props.onUpdateCurrency(updatedCurrency);
     }
 
-    onCancelUpdateCurrency(e) {
+    onCancelUpdateCurrency() {
         this.props.onCancelUpdateCurrency(this.props.currency);
     }
 

@@ -4,9 +4,9 @@ import Table from  'react-bootstrap/lib/Table';
 
 export default class ProductList extends React.Component {
     render() {
-        var products = this.props.products.map(product =>
-            <Product product={product} currencies={this.props.currencies} onDeleteProduct={this.props.onDeleteProduct}
-                     onUpdateProduct={this.props.onUpdateProduct} onAddPricePoint={this.props.onAddPricePoint}/>
+        var products = this.props.products.map((product, index) =>
+            (<Product product={product} currencies={this.props.currencies} onDeleteProduct={this.props.onDeleteProduct}
+                     onUpdateProduct={this.props.onUpdateProduct} onAddPricePoint={this.props.onAddPricePoint} key={index}/>)
         );
 
         return (

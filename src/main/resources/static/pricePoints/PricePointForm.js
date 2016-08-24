@@ -21,8 +21,8 @@ export default class PricePointForm extends React.Component{
         ReactDom.findDOMNode(this.refs["pricePointValue-"+this.props.product.href]).value='';
     }
     render() {
-        var currencies = this.props.currencies.map(currency =>
-            <option  value={currency._links.self.href}>{currency.iso3}</option>
+        var currencies = this.props.currencies.map((currency, index) =>
+            (<option  value={currency._links.self.href} key={index}>{currency.iso3}</option>)
         );
         return (
 

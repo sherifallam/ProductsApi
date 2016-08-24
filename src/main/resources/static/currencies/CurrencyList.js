@@ -4,9 +4,8 @@ import Table from 'react-bootstrap/lib/Table';
 
 export default class CurrencyList extends React.Component {
     render() {
-        var currencies = this.props.currencies.map(currency =>
-            <Currency currency={currency} onDeleteCurrency={this.props.onDeleteCurrency}
-                      onUpdateCurrency={this.props.onUpdateCurrency}/>
+        var currencies = this.props.currencies.map((currency, index) =>
+            (<Currency currency={currency} onDeleteCurrency={this.props.onDeleteCurrency} onUpdateCurrency={this.props.onUpdateCurrency} key={index}/>)
         );
 
         return (

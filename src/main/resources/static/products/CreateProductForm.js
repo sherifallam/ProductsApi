@@ -21,16 +21,16 @@ export default class CreateProductForm extends React.Component {
     handleChange(tags) {
         this.setState({tags:tags});
     }
-    onCreateProduct(e) {
+    onCreateProduct() {
         var newProduct = {
-            "name": ReactDom.findDOMNode(this.refs["productName"]).value.trim(),
-            "description": ReactDom.findDOMNode(this.refs["productDescription"]).value.trim(),
+            "name": ReactDom.findDOMNode(this.refs.productName).value.trim(),
+            "description": ReactDom.findDOMNode(this.refs.productDescription).value.trim(),
             "tags": this.state.tags.toString()
         };
         this.props.onCreateProduct(newProduct);
-        ReactDom.findDOMNode(this.refs["productName"]).value = '';
-        ReactDom.findDOMNode(this.refs["productDescription"]).value = '';
-        this.state = {tags: []}
+        ReactDom.findDOMNode(this.refs.productName).value = '';
+        ReactDom.findDOMNode(this.refs.productDescription).value = '';
+        this.state = {tags: []};
     }
 
     render() {

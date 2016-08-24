@@ -12,7 +12,7 @@ export default class Currency extends React.Component{
     }
 
 
-    onEditCurrency(currency) {
+    onEditCurrency() {
         this.setState({editMode:true});
     }
     onUpdateCurrency(currency) {
@@ -26,7 +26,6 @@ export default class Currency extends React.Component{
     render() {
         return(
             <tbody>
-
                     <CurrencyDetails editMode={this.state.editMode}  ref={this.props.currency._links.self.href+"-pd"}  currency={this.props.currency} onDeleteCurrency={this.props.onDeleteCurrency} onEditCurrency={this.onEditCurrency}/>
                     <UpdateCurrencyDialog editMode={this.state.editMode} ref={this.props.currency._links.self.href+"-upd"}currency={this.props.currency} onUpdateCurrency={this.onUpdateCurrency} onCancelUpdateCurrency={this.onCancelUpdateCurrency}/>
 

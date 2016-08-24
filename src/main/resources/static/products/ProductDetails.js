@@ -19,9 +19,9 @@ export default class ProductDetails extends React.Component {
 
     render() {
         var pricePoints = null;
-        if (this.props.product._embedded != null) {
-            pricePoints = this.props.product._embedded.pricePoints.map(pricePoint =>
-                <div pricePoint={pricePoint}>{pricePoint.price +" "+ pricePoint.currency.iso3}</div>
+        if (this.props.product._embedded) {
+            pricePoints = this.props.product._embedded.pricePoints.map((pricePoint, index) =>
+                (<div pricePoint={pricePoint} key={index}>{pricePoint.price +" "+ pricePoint.currency.iso3}</div>)
             );
         }
         return (

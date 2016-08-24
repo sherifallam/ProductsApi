@@ -15,7 +15,7 @@ export default class UpdateProductDialog extends React.Component {
     handleChange(tags) {
         this.setState({tags:tags});
     }
-    onUpdateProduct(e) {
+    onUpdateProduct() {
         var updatedProduct = {
             "href": this.refs.productHref.value,
             "name": ReactDom.findDOMNode(this.refs.newProductName).value.trim(),
@@ -25,15 +25,15 @@ export default class UpdateProductDialog extends React.Component {
         this.props.onUpdateProduct(updatedProduct);
     }
 
-    onCancelUpdate(e) {
+    onCancelUpdate() {
         this.props.onCancelUpdate(this.props.product);
     }
 
     render() {
         var pricePoints = null;
-        if (this.props.product._embedded != null) {
-            pricePoints = this.props.product._embedded.pricePoints.map(pricePoint =>
-                <div pricePoint={pricePoint}>{pricePoint.price +" "+ pricePoint.currency.iso3}</div>
+        if (this.props.product._embedded) {
+            pricePoints = this.props.product._embedded.pricePoints.map((pricePoint, index) =>
+                (<div pricePoint={pricePoint} key={index}>{pricePoint.price +" "+ pricePoint.currency.iso3}</div>)
             );
         }
         return (
