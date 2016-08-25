@@ -9,20 +9,20 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Panel from 'react-bootstrap/lib/Panel';
 
 export default class CreateCurrencyForm extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.onCreateCurrency = this.onCreateCurrency.bind(this);
-    }
-
     onCreateCurrency() {
+        let currencyNameNode = ReactDom.findDOMNode(this.refs.currencyName);
+        let currencyIso3Node = ReactDom.findDOMNode(this.refs.currencyIso3);
         var newCurrency = {
-            "name": ReactDom.findDOMNode(this.refs.currencyName).value.trim(),
-            "iso3": ReactDom.findDOMNode(this.refs.currencyIso3).value.trim()
+            "name": currencyNameNode.value.trim(),
+            "iso3": currencyIso3Node.value.trim()
         };
         this.props.onCreateCurrency(newCurrency);
-        ReactDom.findDOMNode(this.refs.currencyName).value = '';
-        ReactDom.findDOMNode(this.refs.currencyIso3).value = '';
+        this.resetForm(currencyNameNode, currencyIso3Node);
+    }
+
+    resetForm(currencyNameNode, currencyIso3Node) {
+        currencyNameNode.value = '';
+        currencyIso3Node.value = '';
     }
 
     render() {
@@ -47,7 +47,7 @@ export default class CreateCurrencyForm extends React.Component {
                     </FormGroup>
                     <FormGroup controlId="createCurrency">
                         <Col sm={10} smOffset={2}>
-                            <Button onClick={this.onCreateCurrency}>Create</Button>
+                            <Button onClick={::this.onCreateCurrency}>Create</Button>
                         </Col>
                     </FormGroup>
                 </Form>

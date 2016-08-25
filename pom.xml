@@ -73,8 +73,8 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>v4.4.5</nodeVersion>
-							<npmVersion>3.9.2</npmVersion>
+							<nodeVersion>v6.4.0</nodeVersion>
+							<npmVersion>3.10.7</npmVersion>
 						</configuration>
 					</execution>
 					<execution>

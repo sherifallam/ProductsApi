@@ -10,26 +10,27 @@ import Panel from 'react-bootstrap/lib/Panel';
 import TagsInput from 'react-tagsinput';
 
 export default class CreateProductForm extends React.Component {
+    state = {tags: []};
 
-    constructor(props) {
-        super(props);
-        this.onCreateProduct = this.onCreateProduct.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {tags: []};
-
-    }
     handleChange(tags) {
-        this.setState({tags:tags});
+        this.setState({tags: tags});
     }
+
     onCreateProduct() {
+        let productNameNode = ReactDom.findDOMNode(this.refs.productName);
+        let productDescriptionNode = ReactDom.findDOMNode(this.refs.productDescription);
         var newProduct = {
-            "name": ReactDom.findDOMNode(this.refs.productName).value.trim(),
-            "description": ReactDom.findDOMNode(this.refs.productDescription).value.trim(),
+            "name": productNameNode.value.trim(),
+            "description": productDescriptionNode.value.trim(),
             "tags": this.state.tags.toString()
         };
         this.props.onCreateProduct(newProduct);
-        ReactDom.findDOMNode(this.refs.productName).value = '';
-        ReactDom.findDOMNode(this.refs.productDescription).value = '';
+        this.resetForm(productNameNode, productDescriptionNode);
+    }
+
+    resetForm(productNameNode, productDescriptionNode) {
+        productNameNode.value = '';
+        productDescriptionNode.value = '';
         this.state = {tags: []};
     }
 
@@ -58,12 +59,13 @@ export default class CreateProductForm extends React.Component {
                             Tags
                         </Col>
                         <Col sm={10}>
-                            <TagsInput value={this.state.tags} onChange={this.handleChange}  ref="productTags" addKeys={[32,9,13]} />
+                            <TagsInput value={this.state.tags} onChange={::this.handleChange} ref="productTags"
+                                       addKeys={[32, 9, 13]}/>
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="createProduct">
                         <Col sm={10} smOffset={2}>
-                            <Button onClick={this.onCreateProduct}>Create</Button>
+                            <Button onClick={::this.onCreateProduct}>Create</Button>
                         </Col>
                     </FormGroup>
                 </Form>

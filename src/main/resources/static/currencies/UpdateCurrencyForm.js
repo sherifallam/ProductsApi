@@ -3,13 +3,7 @@ import ReactDom from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
-export default class UpdateCurrencyDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onUpdateCurrency = this.onUpdateCurrency.bind(this);
-        this.onCancelUpdateCurrency = this.onCancelUpdateCurrency.bind(this);
-    }
-
+export default class UpdateCurrencyForm extends React.Component {
     onUpdateCurrency() {
         var updatedCurrency = {
             "href": this.refs.currencyHref.value,
@@ -34,8 +28,8 @@ export default class UpdateCurrencyDialog extends React.Component {
                     <FormControl type="text" ref="newCurrencyiso3" defaultValue={this.props.currency.iso3}/>
                 </td>
                 <td>
-                    <Button onClick={this.onUpdateCurrency}>Update</Button>
-                    <Button onClick={this.onCancelUpdateCurrency}>Cancel</Button>
+                    <Button onClick={::this.onUpdateCurrency}>Update</Button>
+                    <Button onClick={::this.onCancelUpdateCurrency}>Cancel</Button>
                 </td>
             </tr>
         )

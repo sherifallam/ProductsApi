@@ -4,17 +4,13 @@ import Button from  'react-bootstrap/lib/Button';
 import FormControl from  'react-bootstrap/lib/FormControl';
 import TagsInput from  'react-tagsinput';
 
-export default class UpdateProductDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onUpdateProduct = this.onUpdateProduct.bind(this);
-        this.onCancelUpdate = this.onCancelUpdate.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {tags: (props.product.tags!==null)? props.product.tags.split(","):[]};
-    }
+export default class UpdateProductForm extends React.Component {
+    state = {tags: (this.props.product.tags !== null) ? this.props.product.tags.split(",") : []};
+
     handleChange(tags) {
-        this.setState({tags:tags});
+        this.setState({tags: tags});
     }
+
     onUpdateProduct() {
         var updatedProduct = {
             "href": this.refs.productHref.value,
@@ -33,7 +29,7 @@ export default class UpdateProductDialog extends React.Component {
         var pricePoints = null;
         if (this.props.product._embedded) {
             pricePoints = this.props.product._embedded.pricePoints.map((pricePoint, index) =>
-                (<div pricePoint={pricePoint} key={index}>{pricePoint.price +" "+ pricePoint.currency.iso3}</div>)
+                (<div key={index}>{pricePoint.price + " " + pricePoint.currency.iso3}</div>)
             );
         }
         return (
@@ -46,13 +42,14 @@ export default class UpdateProductDialog extends React.Component {
                     <FormControl type="text" ref="newProductDescription" defaultValue={this.props.product.description}/>
                 </td>
                 <td>
-                    <TagsInput value={this.state.tags} onChange={this.handleChange}  ref="newProductTags" addKeys={[32,9,13]} />
+                    <TagsInput value={this.state.tags} onChange={::this.handleChange} ref="newProductTags"
+                               addKeys={[32, 9, 13]}/>
                 </td>
                 <td>{pricePoints}</td>
                 <td />
                 <td>
-                    <Button onClick={this.onUpdateProduct}>Update</Button>
-                    <Button onClick={this.onCancelUpdate}>Cancel</Button>
+                    <Button onClick={::this.onUpdateProduct}>Update</Button>
+                    <Button onClick={::this.onCancelUpdate}>Cancel</Button>
                 </td>
             </tr>
         )

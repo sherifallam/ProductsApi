@@ -1,5 +1,4 @@
 'use strict';
-
 import React from  'react';
 import ReactDOM from  'react-dom';
 import client from  './client';
@@ -12,21 +11,11 @@ import Row from  'react-bootstrap/lib/Row';
 import Col from  'react-bootstrap/lib/Col';
 import NotificationContainer from  'react-notifications/lib/NotificationContainer';
 import NotificationManager from  'react-notifications/lib/NotificationManager';
-require('react-notifications/lib/notifications.css');
+import 'react-notifications/lib/notifications.css';
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {products: [], currencies: []};
-        this.onCreateProduct = this.onCreateProduct.bind(this);
-        this.onDeleteProduct = this.onDeleteProduct.bind(this);
-        this.onUpdateProduct = this.onUpdateProduct.bind(this);
-        this.onCreateCurrency = this.onCreateCurrency.bind(this);
-        this.onDeleteCurrency = this.onDeleteCurrency.bind(this);
-        this.onUpdateCurrency = this.onUpdateCurrency.bind(this);
-        this.onAddPricePoint = this.onAddPricePoint.bind(this);
-    }
+    state = {products: [], currencies: []};
 
     loadAllProducts() {
         client({method: 'GET', path: '/products'}).done(response => {
@@ -64,7 +53,6 @@ class App extends React.Component {
             this.loadAllProducts();
             NotificationManager.success("Product updated successfully.");
         }, errorResponse => {
-            console.log(errorResponse);
             NotificationManager.error(errorResponse.entity[0].message, 'Product Update Error', 5000);
         });
     }
@@ -141,13 +129,13 @@ class App extends React.Component {
                 <Row >
                     <Col xs={12}>
                         <NotificationContainer/>
-                        <CreateProductForm onCreateProduct={this.onCreateProduct}/>
+                        <CreateProductForm onCreateProduct={::this.onCreateProduct}/>
                         <ProductList products={this.state.products} currencies={this.state.currencies}
-                                     onDeleteProduct={this.onDeleteProduct} onUpdateProduct={this.onUpdateProduct}
-                                     onEdit={this.onEditProduct} onAddPricePoint={this.onAddPricePoint}/>
-                        <CreateCurrencyForm onCreateCurrency={this.onCreateCurrency}/>
-                        <CurrencyList currencies={this.state.currencies} onDeleteCurrency={this.onDeleteCurrency}
-                                      onUpdateCurrency={this.onUpdateCurrency} onEditCurrency={this.onEditCurrency}/>
+                                     onDeleteProduct={::this.onDeleteProduct} onUpdateProduct={::this.onUpdateProduct}
+                                     onEdit={this.onEditProduct} onAddPricePoint={::this.onAddPricePoint}/>
+                        <CreateCurrencyForm onCreateCurrency={::this.onCreateCurrency}/>
+                        <CurrencyList currencies={this.state.currencies} onDeleteCurrency={::this.onDeleteCurrency}
+                                      onUpdateCurrency={::this.onUpdateCurrency} onEditCurrency={this.onEditCurrency}/>
                     </Col>
                 </Row>
             </Grid>
