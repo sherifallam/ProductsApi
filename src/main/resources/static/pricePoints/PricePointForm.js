@@ -10,7 +10,7 @@ export default class PricePointForm extends React.Component{
 
     onAddPricePoint() {
         let selectedCurrency = {
-            "currency":this.state.currency,
+            "currency":this.state.currencyHref,
             "product":this.props.product._links.self.href,
             "price":this.state.price.trim()
         };
@@ -30,10 +30,10 @@ export default class PricePointForm extends React.Component{
         );
         return (
             <div>
-                <FormControl componentClass="select" id="currency"  value={this.state.currencyHref} onChange={::this.onInputChange}>
+                <FormControl componentClass="select" id="currencyHref"  value={this.state.currencyHref} onChange={::this.onInputChange}>
                     {currencies}
                 </FormControl>
-                <FormControl type="text"  value={this.state.price} onChange={::this.onInputChange}/>
+                <FormControl type="text" id="price" value={this.state.price} onChange={::this.onInputChange}/>
                 <Button onClick={::this.onAddPricePoint}>Add Price point</Button>
             </div>
         )
