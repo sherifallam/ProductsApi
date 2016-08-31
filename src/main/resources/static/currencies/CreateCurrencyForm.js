@@ -9,20 +9,25 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Panel from 'react-bootstrap/lib/Panel';
 
 export default class CreateCurrencyForm extends React.Component {
+    state = {currencyName:'',currencyIso3:''};
+
     onCreateCurrency() {
         let currencyNameNode = ReactDom.findDOMNode(this.refs.currencyName);
         let currencyIso3Node = ReactDom.findDOMNode(this.refs.currencyIso3);
         var newCurrency = {
-            "name": currencyNameNode.value.trim(),
-            "iso3": currencyIso3Node.value.trim()
+            "name": this.state.currencyName.trim(),
+            "iso3": this.state.currencyIso3.trim()
         };
         this.props.onCreateCurrency(newCurrency);
-        this.resetForm(currencyNameNode, currencyIso3Node);
+        this.setState({currencyName:'',currencyIso3:''});
     }
 
-    resetForm(currencyNameNode, currencyIso3Node) {
-        currencyNameNode.value = '';
-        currencyIso3Node.value = '';
+    onInputChange(e){
+        let controlName= e.target.id;
+        let controlValue= e.target.value;
+        this.setState({
+            [controlName]:controlValue
+        });
     }
 
     render() {
@@ -34,7 +39,7 @@ export default class CreateCurrencyForm extends React.Component {
                             Name
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text" ref="currencyName" />
+                            <FormControl type="text" value={this.state.currencyName} onChange={::this.onInputChange} />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="currencyIso3">
@@ -42,7 +47,7 @@ export default class CreateCurrencyForm extends React.Component {
                             Iso3
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text" ref="currencyIso3" />
+                            <FormControl type="text" value={this.state.currencyIso3} onChange={::this.onInputChange} />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="createCurrency">

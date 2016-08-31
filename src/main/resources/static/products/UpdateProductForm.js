@@ -5,17 +5,21 @@ import FormControl from  'react-bootstrap/lib/FormControl';
 import TagsInput from  'react-tagsinput';
 
 export default class UpdateProductForm extends React.Component {
-    state = {tags: (this.props.product.tags !== null) ? this.props.product.tags.split(",") : []};
+    state = {
+        tags: (this.props.product.tags !== null) ? this.props.product.tags.split(",") : [],
+        productName:this.props.product.name,
+        productDescription:this.props.product.description
+    };
 
-    handleChange(tags) {
+    onTagChange(tags) {
         this.setState({tags: tags});
     }
 
     onUpdateProduct() {
         var updatedProduct = {
-            "href": this.refs.productHref.value,
-            "name": ReactDom.findDOMNode(this.refs.newProductName).value.trim(),
-            "description": ReactDom.findDOMNode(this.refs.newProductDescription).value.trim(),
+            "href": this.props.product._links.self.href,
+            "name": this.state.productName.trim(),
+            "description": this.state.productDescription.trim(),
             "tags": this.state.tags.toString()
         };
         this.props.onUpdateProduct(updatedProduct);
@@ -23,6 +27,14 @@ export default class UpdateProductForm extends React.Component {
 
     onCancelUpdate() {
         this.props.onCancelUpdate(this.props.product);
+    }
+
+    onInputChange(e){
+        let controlName= e.target.id;
+        let controlValue= e.target.value;
+        this.setState({
+            [controlName]:controlValue
+        });
     }
 
     render() {
@@ -35,15 +47,13 @@ export default class UpdateProductForm extends React.Component {
         return (
             <tr id="updateProduct" className={this.props.editMode ? "" : "displayNone"}>
                 <td>
-                    <input type="hidden" ref="productHref" defaultValue={this.props.product._links.self.href}/>
-                    <FormControl type="text" ref="newProductName" defaultValue={this.props.product.name}/>
+                    <FormControl type="text" id="productName" value={this.state.productName} onChange={::this.onInputChange} />
                 </td>
                 <td>
-                    <FormControl type="text" ref="newProductDescription" defaultValue={this.props.product.description}/>
+                    <FormControl type="text" id="productDescription" value={this.state.productDescription} onChange={::this.onInputChange} />
                 </td>
                 <td>
-                    <TagsInput value={this.state.tags} onChange={::this.handleChange} ref="newProductTags"
-                               addKeys={[32, 9, 13]}/>
+                    <TagsInput value={this.state.tags} onChange={::this.onTagChange} addKeys={[32, 9, 13]}/>
                 </td>
                 <td>{pricePoints}</td>
                 <td />

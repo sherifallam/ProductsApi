@@ -10,28 +10,28 @@ import Panel from 'react-bootstrap/lib/Panel';
 import TagsInput from 'react-tagsinput';
 
 export default class CreateProductForm extends React.Component {
-    state = {tags: []};
+    state = {tags: [],productName:'',productDescription:''};
 
-    handleChange(tags) {
+    onTagChange(tags) {
         this.setState({tags: tags});
     }
 
+    onInputChange(e){
+        let controlName= e.target.id;
+        let controlValue= e.target.value;
+        this.setState({
+            [controlName]:controlValue
+        });
+    }
+
     onCreateProduct() {
-        let productNameNode = ReactDom.findDOMNode(this.refs.productName);
-        let productDescriptionNode = ReactDom.findDOMNode(this.refs.productDescription);
-        var newProduct = {
-            "name": productNameNode.value.trim(),
-            "description": productDescriptionNode.value.trim(),
+        let newProduct = {
+            "name": this.state.productName.trim(),
+            "description": this.state.productDescription.trim(),
             "tags": this.state.tags.toString()
         };
         this.props.onCreateProduct(newProduct);
-        this.resetForm(productNameNode, productDescriptionNode);
-    }
-
-    resetForm(productNameNode, productDescriptionNode) {
-        productNameNode.value = '';
-        productDescriptionNode.value = '';
-        this.state = {tags: []};
+        this.setState({tags: [],productName:'',productDescription:''});
     }
 
     render() {
@@ -43,7 +43,7 @@ export default class CreateProductForm extends React.Component {
                             Name
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text" ref="productName"/>
+                            <FormControl type="text" value={this.state.productName} onChange={::this.onInputChange}/>
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="productDescription">
@@ -51,7 +51,7 @@ export default class CreateProductForm extends React.Component {
                             Description
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text" ref="productDescription"/>
+                            <FormControl type="text" value={this.state.productDescription} onChange={::this.onInputChange} />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="productTags">
@@ -59,8 +59,7 @@ export default class CreateProductForm extends React.Component {
                             Tags
                         </Col>
                         <Col sm={10}>
-                            <TagsInput value={this.state.tags} onChange={::this.handleChange} ref="productTags"
-                                       addKeys={[32, 9, 13]}/>
+                            <TagsInput value={this.state.tags} onChange={::this.onTagChange} addKeys={[32, 9, 13]}/>
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="createProduct">

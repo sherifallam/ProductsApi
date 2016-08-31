@@ -4,11 +4,16 @@ import Button from 'react-bootstrap/lib/Button';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
 export default class UpdateCurrencyForm extends React.Component {
+    state = {
+        currencyName:this.props.currency.name,
+        currencyIso3:this.props.currency.iso3
+    };
+
     onUpdateCurrency() {
         var updatedCurrency = {
-            "href": this.refs.currencyHref.value,
-            "name": ReactDom.findDOMNode(this.refs.newCurrencyName).value.trim(),
-            "iso3": ReactDom.findDOMNode(this.refs.newCurrencyiso3).value.trim()
+            "href": this.props.currency._links.self.href,
+            "name": this.state.currencyName.trim(),
+            "iso3": this.state.currencyIso3.trim()
         };
         this.props.onUpdateCurrency(updatedCurrency);
     }
@@ -17,15 +22,22 @@ export default class UpdateCurrencyForm extends React.Component {
         this.props.onCancelUpdateCurrency(this.props.currency);
     }
 
+    onInputChange(e){
+        let controlName= e.target.id;
+        let controlValue= e.target.value;
+        this.setState({
+            [controlName]:controlValue
+        });
+    }
+
     render() {
         return (
             <tr id="updateCurrency" className={this.props.editMode ? "" : "displayNone"}>
                 <td>
-                    <input type="hidden" ref="currencyHref" defaultValue={this.props.currency._links.self.href}/>
-                    <FormControl type="text" ref="newCurrencyName" defaultValue={this.props.currency.name}/>
+                    <FormControl type="text"  id="currencyName" value={this.state.currencyName} onChange={::this.onInputChange} />
                 </td>
                 <td>
-                    <FormControl type="text" ref="newCurrencyiso3" defaultValue={this.props.currency.iso3}/>
+                    <FormControl type="text"  id="currencyIso3" value={this.state.currencyIso3} onChange={::this.onInputChange} />
                 </td>
                 <td>
                     <Button onClick={::this.onUpdateCurrency}>Update</Button>

@@ -15,7 +15,7 @@ export default class ProductDetails extends React.Component {
         var pricePoints = null;
         if (this.props.product._embedded) {
             pricePoints = this.props.product._embedded.pricePoints.map((pricePoint, index) =>
-                (<div key={index}>{pricePoint.price +" "+ pricePoint.currency.iso3}</div>)
+                (<div key={index}>{pricePoint.price + " " + pricePoint.currency.iso3}</div>)
             );
         }
         return (
@@ -27,8 +27,13 @@ export default class ProductDetails extends React.Component {
                 <td>{this.props.product.tags}</td>
                 <td>{pricePoints}</td>
                 <td>
-                    <PricePointForm currencies={this.props.currencies} product={this.props.product}
-                                      onAddPricePoint={this.props.onAddPricePoint}/>
+                    {
+                        (this.props.currencies.length > 0) ?
+                            <PricePointForm currencies={this.props.currencies} product={this.props.product}
+                                            onAddPricePoint={this.props.onAddPricePoint}/>
+
+                            : ''
+                    }
                 </td>
                 <td>
                     <Button bsStyle="danger" onClick={::this.onDeleteProduct}>Delete</Button>
